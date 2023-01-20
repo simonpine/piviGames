@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.hide{
+    display: none;
+}
+.logoNav{
+    width: 20px;
+}
+.none{
+    display: none;
+}
+.asd{
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
