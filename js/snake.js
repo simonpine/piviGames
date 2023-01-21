@@ -32,9 +32,7 @@ function drawGame() {
   drawApple()
   bodyBreak()
 
-  ctx.lineWidth = 5;
-  ctx.fillStyle = "#008000";
-  ctx.fillRect(positionX, positionY, 20, 20);
+  drawHead()
 
   if (((positionY > 480) || positionY < 0) || (positionX > 580 || positionX < 0)) {
     stopGame()
@@ -74,6 +72,11 @@ function bodyBreak() {
     }
   }
 }
+function drawHead() {
+  ctx.lineWidth = 5;
+  ctx.fillStyle = "#004b00";
+  ctx.fillRect(positionX, positionY, 20, 20);
+}
 function stopGame() {
   colision = false
   move = false
@@ -86,29 +89,32 @@ function clear() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function createCube(x, y) {
-  ctx.fillStyle = "#008000";
+function createCube(x, y, i) {
+  const dot = i % 2;
+  if(dot === 0){
+    ctx.fillStyle = "#004b00";
+  }
+  else{
+    ctx.fillStyle = "#008000";
+  }
   ctx.fillRect(x, y, 20, 20);
 }
 function printTail() {
   for (let i = 0; i < body.length; i++) {
     let part = body[i];
-    createCube(part.x, part.y)
+    createCube(part.x, part.y, i)
   }
   body.push({ x: positionX, y: positionY });
   while (body.length > tailLength) {
     body.shift();
   }
 }
-startButton.addEventListener('click', () => {
-  move = null
-  positionX = 160
-  positionY = 160
-  drawGame()
-})
 function drawApple() {
+  ctx.beginPath();
+  ctx.stroke();
   ctx.fillStyle = "red";
-  ctx.fillRect(appleX, appleY, 20, 20);
+  ctx.arc(appleX + 10, appleY + 10 , 10, 0, 2 * Math.PI, false);
+  ctx.fill();
 
 }
 
@@ -136,7 +142,7 @@ function checkKey(e) {
       move = 'left'
     }
   }
-  else if (e.keyCode == '39'|| e.innerText === 'Right') {
+  else if (e.keyCode == '39' || e.innerText === 'Right') {
     // right arrow
     if (move !== 'left') {
 
@@ -144,6 +150,12 @@ function checkKey(e) {
     }
   }
 }
+startButton.addEventListener('click', () => {
+  move = null
+  positionX = 160
+  positionY = 160
+  drawGame()
+})
 direction.forEach(item => {
   item.addEventListener('click', () => {
     checkKey(item)
