@@ -1,6 +1,7 @@
 const canvas = document.getElementById("game");
 const startButton = document.getElementById("startSnake");
-const mode = document.getElementById("mode");
+const direction = document.querySelectorAll(".directionButtons");
+// const mode = document.getElementById("mode");
 const ctx = canvas.getContext("2d");
 document.onkeydown = checkKey;
 let move = null
@@ -30,7 +31,7 @@ function drawGame() {
   printTail()
   drawApple()
   bodyBreak()
-  
+
   ctx.lineWidth = 5;
   ctx.fillStyle = "#008000";
   ctx.fillRect(positionX, positionY, 20, 20);
@@ -38,7 +39,7 @@ function drawGame() {
   if (((positionY > 480) || positionY < 0) || (positionX > 580 || positionX < 0)) {
     stopGame()
   }
-  else if(colision){
+  else if (colision) {
     stopGame()
   }
   else {
@@ -46,9 +47,16 @@ function drawGame() {
   }
   if (appleX === positionX && appleY === positionY) {
     tailLength = tailLength + 1
-
     appleX = 20 * Math.floor(Math.random() * 29)
     appleY = 20 * Math.floor(Math.random() * 24)
+    for (let i = 4; i < body.length; i++) {
+      let part = body[i];
+      if (appleX === part.x && appleY === part.y) {
+        appleX = 20 * Math.floor(Math.random() * 29)
+        appleY = 20 * Math.floor(Math.random() * 24)
+        break
+      }
+    }
   }
   if (move !== false || (positionX === 160 && positionY === 160)) {
     startButton.classList = 'none'
@@ -101,35 +109,34 @@ startButton.addEventListener('click', () => {
 function drawApple() {
   ctx.fillStyle = "red";
   ctx.fillRect(appleX, appleY, 20, 20);
+
 }
-drawGame()
 
 function checkKey(e) {
-
   e = e || window.event;
 
-  if (e.keyCode == '38') {
+  if (e.keyCode == '38' || e.innerText === 'Up') {
     // up arrow
     if (move !== 'down') {
 
       move = 'up'
     }
   }
-  else if (e.keyCode == '40') {
+  else if (e.keyCode == '40' || e.innerText === 'Down') {
     // down arrow
     if (move !== 'up') {
 
       move = 'down'
     }
   }
-  else if (e.keyCode == '37') {
+  else if (e.keyCode == '37' || e.innerText === 'Left') {
     // left arrow
     if (move !== 'right') {
 
       move = 'left'
     }
   }
-  else if (e.keyCode == '39') {
+  else if (e.keyCode == '39'|| e.innerText === 'Right') {
     // right arrow
     if (move !== 'left') {
 
@@ -137,3 +144,10 @@ function checkKey(e) {
     }
   }
 }
+direction.forEach(item => {
+  item.addEventListener('click', () => {
+    checkKey(item)
+  }
+  )
+})
+drawGame()
