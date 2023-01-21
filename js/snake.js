@@ -1,7 +1,6 @@
 const canvas = document.getElementById("game");
 const startButton = document.getElementById("startSnake");
 const direction = document.querySelectorAll(".directionButtons");
-// const mode = document.getElementById("mode");
 const ctx = canvas.getContext("2d");
 document.onkeydown = checkKey;
 let move = null
@@ -31,9 +30,9 @@ function drawGame() {
   printTail()
   drawApple()
   bodyBreak()
-
   drawHead()
-
+  appleCatch()
+  
   if (((positionY > 480) || positionY < 0) || (positionX > 580 || positionX < 0)) {
     stopGame()
   }
@@ -43,6 +42,20 @@ function drawGame() {
   else {
     setTimeout(drawGame, 60);
   }
+  rePlay()
+}
+//-------------------------------------------------Game Function (brack)----------------------------------------
+
+function bodyBreak() {
+  for (let i = 0; i < body.length - 2; i++) {
+    let part = body[i];
+    if (part.x === positionX && part.y === positionY) {
+      colision = true
+      break;
+    }
+  }
+}
+function appleCatch() {
   if (appleX === positionX && appleY === positionY) {
     tailLength = tailLength + 1
     appleX = 20 * Math.floor(Math.random() * 29)
@@ -56,26 +69,6 @@ function drawGame() {
       }
     }
   }
-  if (move !== false || (positionX === 160 && positionY === 160)) {
-    startButton.classList = 'none'
-  }
-  else {
-    startButton.classList = ''
-  }
-}
-function bodyBreak() {
-  for (let i = 0; i < body.length - 2; i++) {
-    let part = body[i];
-    if (part.x === positionX && part.y === positionY) {
-      colision = true
-      break;
-    }
-  }
-}
-function drawHead() {
-  ctx.lineWidth = 5;
-  ctx.fillStyle = "#004b00";
-  ctx.fillRect(positionX, positionY, 20, 20);
 }
 function stopGame() {
   colision = false
@@ -84,20 +77,31 @@ function stopGame() {
   tailLength = 2
   appleY = 60
 }
+function rePlay(){
+  if (move !== false || (positionX === 160 && positionY === 160)) {
+    startButton.classList = 'none'
+  }
+  else {
+    startButton.classList = ''
+  }
+}
+//-------------------------------------------------Draw script----------------------------------------
 function clear() {
   ctx.fillStyle = "#CCFFCC";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
+function drawHead() {
+  ctx.lineWidth = 5;
+  ctx.fillStyle = "#004b00";
+  ctx.fillRect(positionX, positionY, 20, 20);
+}
+function drawApple() {
+  ctx.beginPath();
+  ctx.stroke();
+  ctx.fillStyle = "red";
+  ctx.arc(appleX + 10, appleY + 10, 10, 0, 2 * Math.PI, false);
+  ctx.fill();
 
-function createCube(x, y, i) {
-  const dot = i % 2;
-  if(dot === 0){
-    ctx.fillStyle = "#004b00";
-  }
-  else{
-    ctx.fillStyle = "#008000";
-  }
-  ctx.fillRect(x, y, 20, 20);
 }
 function printTail() {
   for (let i = 0; i < body.length; i++) {
@@ -109,15 +113,17 @@ function printTail() {
     body.shift();
   }
 }
-function drawApple() {
-  ctx.beginPath();
-  ctx.stroke();
-  ctx.fillStyle = "red";
-  ctx.arc(appleX + 10, appleY + 10 , 10, 0, 2 * Math.PI, false);
-  ctx.fill();
-
+function createCube(x, y, i) {
+  const dot = i % 2;
+  if (dot === 0) {
+    ctx.fillStyle = "#004b00";
+  }
+  else {
+    ctx.fillStyle = "#008000";
+  }
+  ctx.fillRect(x, y, 20, 20);
 }
-
+//-------------------------------------------------Move script----------------------------------------
 function checkKey(e) {
   e = e || window.event;
 
