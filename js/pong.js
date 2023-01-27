@@ -1,18 +1,31 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 document.onkeydown = checkKey;
+const start = document.querySelector('#startPong')
 let ballX = 450;
 let ballY = 250;
 let velocity = 2;
 let velocityUsers = 4;
-let direction = 'ld';
+let color = 'white'
+let direction;
 let user1Y = 10;
 let user2Y = 10;
 let moveUser1;
 let moveUser2;
 
+let points1 = 0
+let points2 = 0
+
+start.addEventListener('click', () => {
+    color = 'white'
+    ballX = 450;
+    ballY = 250;
+    const sta = Math.round(Math.random() * 4)
+    sta >= 2 ? direction = 'ld' : direction = 'ru'
+})
 function drawGame() {
     clear()
+    drawPoints()
     ballDirect()
     ball()
     drawUser1()
@@ -23,13 +36,13 @@ function drawGame() {
     requestAnimationFrame(drawGame)
 }
 function clear() {
-    ctx.fillStyle = "#301f35";
+    ctx.fillStyle = "#1b181c";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 function ball() {
     ctx.beginPath();
     ctx.stroke();
-    ctx.fillStyle = "white";
+    ctx.fillStyle = color;
     ctx.arc(ballX, ballY, 10, 0, 2 * Math.PI, false);
     ctx.fill();
 }
@@ -54,6 +67,12 @@ function usersMove() {
             user2Y = user2Y - velocityUsers
         }
     }
+}
+function drawPoints() {
+    ctx.font = "90px arial";
+    ctx.fillStyle = "#29252b";
+    ctx.textAlign = "center";
+    ctx.fillText(`${points1} | ${points2}`, canvas.width/2, 270);
 }
 function ballDirect() {
     if (direction === 'ld') {
@@ -88,11 +107,25 @@ function topButtonColision() {
         velocity = velocity + 0.3
         direction === 'rd' ? direction = 'ld' : direction = 'lu'
     }
+    else if (ballX >= 890) {
+        color = 'red'
+        direction = undefined
+        points1 += 1
+        ballX = ballX - 5
+    }
+    else if (ballX <= 10) {
+        color = 'red'
+        direction = undefined
+        points2 += 1
+        ballX = ballX + 5
+    }
 }
 function drawUser1() {
+    ctx.fillStyle = 'white';
     ctx.fillRect(10, user1Y, 10, 100);
 }
 function drawUser2() {
+    ctx.fillStyle = 'white';
     ctx.fillRect(880, user2Y, 10, 100);
 }
 function checkKey(e) {
