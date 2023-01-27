@@ -17,6 +17,7 @@ let points1 = 0
 let points2 = 0
 
 start.addEventListener('click', () => {
+    velocity = 2;
     color = 'white'
     ballX = 450;
     ballY = 250;
