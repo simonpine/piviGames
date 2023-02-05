@@ -128,7 +128,7 @@ function drawPipe22() {
     ctx.restore();
 }
 function coliison() {
-    if ((pipe1Position < 130 && pipe1Position > 60) && (birdPosition > (hole1 + 50) || birdPosition < (hole1 - 50)) || (pipe2Position < 130 && pipe2Position > 60) && (birdPosition > (hole2 + 50) || birdPosition < (hole2 - 50))) {
+    if ((pipe1Position < 130 && pipe1Position > 60) && (birdPosition > (hole1 + 30) || birdPosition < (hole1 - 50)) || (pipe2Position < 130 && pipe2Position > 60) && (birdPosition > (hole2 + 30) || birdPosition < (hole2 - 50))) {
         stopGame()
     }
     else if (pipe1Position === 95 || pipe2Position === 95) {
