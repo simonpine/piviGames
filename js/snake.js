@@ -15,6 +15,7 @@ let colision = false
 
 function drawGame() {
   clear()
+  drawPoints() 
   if (move === 'right') {
     positionX = positionX + 20
   }
@@ -102,6 +103,12 @@ function drawApple() {
   ctx.arc(appleX + 10, appleY + 10, 10, 0, 2 * Math.PI, false);
   ctx.fill();
 
+}
+function drawPoints() {
+  ctx.font = "90px arial";
+  ctx.fillStyle = "#a9d6a9";
+  ctx.textAlign = "center";
+  ctx.fillText(`${tailLength -2 }`, canvas.width/2, 270);
 }
 function printTail() {
   for (let i = 0; i < body.length; i++) {
