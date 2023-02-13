@@ -64,7 +64,7 @@ function move2(e) {
 
 }
 function rePlay() {
-    if (points === 0 ) {
+    if (points === 0) {
         startButton.classList = ''
     }
     else {
@@ -76,10 +76,10 @@ function rePlay() {
     else {
         againButton.classList = 'none'
     }
-    if(points === 6000 || points === 12001 || points === 18002 || points === 24003){
+    if (points === 6000 || points === 12001 || points === 18002 || points === 24003) {
         nextLevel.classList = ''
     }
-    else{
+    else {
         nextLevel.classList = 'none'
     }
 }
@@ -99,7 +99,7 @@ function drawPoints() {
     ctx.fillText(`${points}`, canvas.width / 2, 270);
 }
 function lose() {
-    if(loose){
+    if (loose) {
         dark()
         ctx.font = "90px arial";
         ctx.fillStyle = "white";
@@ -176,7 +176,7 @@ function colision() {
             aliens.map((line) => {
                 line.map(alien => {
                     if (alien.alive) {
-                        if ((alien.positionX + aliensPositionX - 5 < shot.positionX && alien.positionX + 45 + aliensPositionX > shot.positionX) && alien.positionY + aliensPositionY === shot.positionY) {
+                        if ((alien.positionX + aliensPositionX - 10 < shot.positionX && alien.positionX + 50 + aliensPositionX > shot.positionX) && alien.positionY + aliensPositionY === shot.positionY) {
                             shots.splice(index, 1)
                             points += 100
                             return alien.alive = false
