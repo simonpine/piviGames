@@ -204,6 +204,7 @@ function colision() {
                 if(shot.positionX > shipX && shot.positionX < shipX + 50){
                     gameStop = true
                     loose = true
+                    alienShots.length = 0
                 }
             }
         })
