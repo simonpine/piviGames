@@ -20,6 +20,7 @@ let loose = false
 let alVel = 1
 let shipX = 220
 let moveAliens = 'right'
+let points = 0
 const shots = []
 const alienShots = []
 const aliens = []
@@ -34,7 +35,6 @@ for (let i = 0; i < 6; i++) {
     }
     aliens.push(item)
 }
-let points = 0
 function drawGame() {
     moveAuot()
     colision()
@@ -52,37 +52,18 @@ function clear() {
 }
 function drawSpaceShip() {
     ctx.drawImage(ship, shipX, 530, 50, 50);
-
 }
-function move2(e) {
-    e = e || window.event
-    if (e.key === 'ArrowRight') {
-        vel = 0
-    }
-    else if (e.key === 'ArrowLeft') {
-        vel = 0
-    }
-
-}
-function rePlay() {
-    if (points === 0) {
-        startButton.classList = ''
-    }
-    else {
-        startButton.classList = 'none'
-    }
-    if (loose) {
-        againButton.classList = ''
-    }
-    else {
-        againButton.classList = 'none'
-    }
-    if (points === 6000 || points === 12001 || points === 18002 || points === 24003) {
-        nextLevel.classList = ''
-    }
-    else {
-        nextLevel.classList = 'none'
-    }
+function drawShots() {
+    shots.map((shot) => {
+        ctx.fillStyle = "red";
+        ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
+        return shot.positionY -= 5
+    })
+    alienShots.map((shot) => {
+        ctx.fillStyle = "white";
+        ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
+        return shot.positionY += 3
+    })
 }
 function drawAliens() {
     aliens.map((line) => {
@@ -106,34 +87,9 @@ function drawPoints() {
     ctx.textAlign = "center";
     ctx.fillText(`${points}`, canvas.width / 2, 270);
 }
-function lose() {
-    if (loose) {
-        dark()
-        ctx.font = "90px arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText(`You lose`, canvas.width / 2, 270);
-    }
-    aliens.map((line) => {
-        line.map((alien) => {
-            if (alien.alive) {
-                if (alien.positionY + aliensPositionY > 528) {
-                    gameStop = true
-                    loose = true
-                }
-            }
-        })
-    })
-    if (points === 6000 || points === 12001 || points === 18002 || points === 24003) {
-        dark()
-        ctx.font = "90px arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText(`You Win`, canvas.width / 2, 270);
-        gameStop = true
-    }
-}
+
 function moveAuot() {
+    //================================player and aliens moves
     if (!gameStop) {
         if (!(shipX < 531 && shipX > 19)) {
             vel = 0
@@ -171,11 +127,8 @@ function moveAuot() {
         }
     }
 }
-function dark() {
-    ctx.fillStyle = '#1d1d1d83';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
 function colision() {
+    //======================================================player of alien shots
     if (shots.length > 0) {
         shots.map((shot, index) => {
             if (shot.positionY < 0) {
@@ -184,7 +137,7 @@ function colision() {
             aliens.map((line) => {
                 line.map(alien => {
                     if (alien.alive) {
-                        if ((alien.positionX + aliensPositionX - 10 < shot.positionX && alien.positionX + 50 + aliensPositionX > shot.positionX) && alien.positionY + aliensPositionY === shot.positionY) {
+                        if ((alien.positionX + aliensPositionX - 10 < shot.positionX && alien.positionX + 50 + aliensPositionX > shot.positionX) && (alien.positionY + aliensPositionY < shot.positionY && alien.positionY + aliensPositionY + 30 > shot.positionY)) {
                             shots.splice(index, 1)
                             points += 100
                             return alien.alive = false
@@ -194,14 +147,15 @@ function colision() {
             })
         })
     }
-    if (alienShots.length > 0){
+    //======================================================colision of alien shots
+    if (alienShots.length > 0) {
         alienShots.map((shot, index) => {
             if (shot.positionY > 600) {
                 alienShots.splice(index, 1)
                 console.log('uy')
             }
-            else if(shot.positionY > 530 && shot.positionY < 580){
-                if(shot.positionX > shipX && shot.positionX < shipX + 50){
+            else if (shot.positionY > 530 && shot.positionY < 580) {
+                if (shot.positionX > shipX && shot.positionX < shipX + 50) {
                     gameStop = true
                     loose = true
                     alienShots.length = 0
@@ -210,17 +164,56 @@ function colision() {
         })
     }
 }
-function drawShots() {
-    shots.map((shot) => {
-        ctx.fillStyle = "red";
-        ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
-        return shot.positionY -= 5
-    })
-    alienShots.map((shot) => {
+function lose() {
+    if (loose) {
+        dark()
+        ctx.font = "90px arial";
         ctx.fillStyle = "white";
-        ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
-        return shot.positionY += 3
+        ctx.textAlign = "center";
+        ctx.fillText(`You lose`, canvas.width / 2, 270);
+    }
+    aliens.map((line) => {
+        line.map((alien) => {
+            if (alien.alive) {
+                if (alien.positionY + aliensPositionY > 528) {
+                    gameStop = true
+                    loose = true
+                }
+            }
+        })
     })
+    if (points === 6000 || points === 12001 || points === 18002 || points === 24003) {
+        dark()
+        ctx.font = "90px arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(`You Win`, canvas.width / 2, 270);
+        gameStop = true
+    }
+}
+function dark() {
+    ctx.fillStyle = '#1d1d1d83';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+function rePlay() {
+    if (points === 0) {
+        startButton.classList = ''
+    }
+    else {
+        startButton.classList = 'none'
+    }
+    if (loose) {
+        againButton.classList = ''
+    }
+    else {
+        againButton.classList = 'none'
+    }
+    if (points === 6000 || points === 12001 || points === 18002 || points === 24003) {
+        nextLevel.classList = ''
+    }
+    else {
+        nextLevel.classList = 'none'
+    }
 }
 function move(e) {
     e = e || window.event
@@ -235,6 +228,16 @@ function move(e) {
             shots.length < 10 && shots.push({ positionX: shipX + 22, positionY: 520 })
         }
     }
+}
+function move2(e) {
+    e = e || window.event
+    if (e.key === 'ArrowRight') {
+        vel = 0
+    }
+    else if (e.key === 'ArrowLeft') {
+        vel = 0
+    }
+
 }
 startButton.addEventListener('click', () => {
     gameStop = false
