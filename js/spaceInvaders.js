@@ -21,6 +21,7 @@ let alVel = 1
 let shipX = 220
 let moveAliens = 'right'
 const shots = []
+const alienShots = []
 const aliens = []
 for (let i = 0; i < 6; i++) {
     const item = []
@@ -88,6 +89,13 @@ function drawAliens() {
         line.map((alien) => {
             if (alien.alive) {
                 ctx.drawImage(al, alien.positionX + aliensPositionX, alien.positionY + aliensPositionY, 40, 30);
+                if (!gameStop) {
+                    if (alienShots.length < 10) {
+                        if (Math.floor(Math.random() * 3000) === 50) {
+                            alienShots.push({ positionX: alien.positionX + aliensPositionX, positionY: alien.positionY + aliensPositionY })
+                        }
+                    }
+                }
             }
         })
     })
@@ -186,12 +194,31 @@ function colision() {
             })
         })
     }
+    if (alienShots.length > 0){
+        alienShots.map((shot, index) => {
+            if (shot.positionY > 600) {
+                alienShots.splice(index, 1)
+                console.log('uy')
+            }
+            else if(shot.positionY > 530 && shot.positionY < 580){
+                if(shot.positionX > shipX && shot.positionX < shipX + 50){
+                    gameStop = true
+                    loose = true
+                }
+            }
+        })
+    }
 }
 function drawShots() {
     shots.map((shot) => {
         ctx.fillStyle = "red";
         ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
         return shot.positionY -= 5
+    })
+    alienShots.map((shot) => {
+        ctx.fillStyle = "white";
+        ctx.fillRect(shot.positionX, shot.positionY, 7, 15);
+        return shot.positionY += 3
     })
 }
 function move(e) {
