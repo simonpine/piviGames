@@ -152,7 +152,7 @@ function colision() {
         alienShots.map((shot, index) => {
             if (shot.positionY > 600) {
                 alienShots.splice(index, 1)
-                console.log('uy')
+            
             }
             else if (shot.positionY > 530 && shot.positionY < 580) {
                 if (shot.positionX > shipX && shot.positionX < shipX + 50) {
