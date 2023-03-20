@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.0-alpha1"
+    "bootstrap": "^5.3.0-alpha1",
+    "three": "^0.150.1"
   }
 }
