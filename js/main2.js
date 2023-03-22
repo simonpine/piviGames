@@ -25,15 +25,15 @@ document.body.appendChild(renderer.domElement)
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.addEventListener('change', render)
 
-const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshBasicMaterial({
     color: 0x00ff00,
     wireframe: true,
 })
-
-const cube = new THREE.Mesh(geometry, material)
-cube.material.color.setHex( 255255255 )
-scene.add(cube)
+var radius
+var height
+let geometry = new THREE.BoxGeometry()
+let cube = new THREE.Mesh(geometry, material)
+cube.material.color.setHex(255255255)
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
@@ -42,7 +42,7 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     render()
 }
-renderer.setClearColor(0x000000, 0 )
+renderer.setClearColor(0x000000, 0)
 
 function render() {
     renderer.render(scene, camera)
@@ -53,41 +53,89 @@ setInterval(() => {
     camera.lookAt(cube.position)
     renderer.render(scene, camera)
 }, 1000 / 60)
-
-//animate()
+scene.add(cube)
+let x = 1
+// setInterval(() => {
+//     scene.clear()
+//     if (x === 1) {
+//         radius = 0.3;
+//         height = 0.8;
+//         geometry = new THREE.CylinderGeometry(1, radius, height, 4, 1)
+//         cube = new THREE.Mesh(geometry, material)
+//         x++
+//     }
+//     else if (x === 2) {
+//         radius = 0.8;
+//         height = 1.2;
+//         geometry = new THREE.CylinderGeometry(0, radius, height, 4, 1)
+//         cube = new THREE.Mesh(geometry, material)
+//         x++
+//     }
+//     else {
+//         geometry = new THREE.BoxGeometry()
+//         cube = new THREE.Mesh(geometry, material)
+//         x = 1
+//     }
+//     scene.add(cube)
+// }, 5000);
 render()
 
 snake.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.CylinderGeometry(0.7, 0.5, 0.5, 10)
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg snake'
 })
 snake.addEventListener("mouseout", (event) => {
     body.classList = 'bg'
 })
 flapy.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.ConeGeometry(0.6, 0.9, 10)
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg bird'
 })
 flapy.addEventListener("mouseout", (event) => {
     body.classList = 'bg'
 })
 space.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.TorusGeometry(0.6, 0.2, 5, 20)
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg space'
 })
 space.addEventListener("mouseout", (event) => {
     body.classList = 'bg'
 })
 pong.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.SphereGeometry(0.6, 10, 5);
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg pong'
 })
 pong.addEventListener("mouseout", (event) => {
     body.classList = 'bg'
 })
 pac.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.SphereGeometry(0.6, 10, 2);
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg pac'
+
 })
 pac.addEventListener("mouseout", (event) => {
     body.classList = 'bg'
 })
 te.addEventListener("mouseover", (event) => {
+    scene.clear()
+    geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 100, 3);
+    cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
     body.classList = 'bg te'
 })
 te.addEventListener("mouseout", (event) => {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="author" content="Simon Pineda">
     <meta name="Copyright" content="Copyright ©SimonPine 2022">
@@ -9,13 +10,46 @@
     <link rel="stylesheet" type="text/css" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <h1>Flappy bird</h1>
-    
-    <canvas id="game" width="288" height="450"></canvas>
-    <button id="jump" class="none">jump</button>
-    <button id="restart">restart</button>
 
+<body>
+    <nav class="navHome">
+        <!-- <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a> -->
+        <ul class="ul1">
+            <li>
+                <a class="initialButtons" id="pongButton" href="./pong.html">Pong</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="pacButton" href="./pacman.html">Pacman</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="flapyButton" href="../index.html">Home</a>
+            </li>
+
+        </ul>
+        <ul class="ul2">
+            <li>
+                <a class="initialButtons" id="snakeButton" href="./snake.html">Snake</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="teButton" href="./tetris.html">Tetris</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="spaceButton" href="./spaceInvader.html">Space Invaders</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="gameBut">
+        <h1 class="title">Flappy bird</h1>
+
+        <canvas id="game" width="288" height="450"></canvas>
+        <button id="jump" class="none">jump</button>
+        <button id="restartBird">restart</button>
+    </div>
+    <div class="info">
+    </div>
+    <script src="../js/bg.js"></script>
     <script src="../js/bird.js"></script>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const jump = document.querySelector('#jump')
-const restart = document.querySelector('#restart')
+const restart = document.querySelector('#restartBird')
 const today = new Date().getHours();
 const bird = new Image();
 document.onkeydown = jumpBird;
@@ -32,6 +32,12 @@ pipe.src = '../img/pipe.png'
 background.src = today < 18 ? "../img/background-day.png" : "https://raw.githubusercontent.com/samuelcust/flappy-bird-assets/master/sprites/background-night.png";
 bird.src = sprites.one
 function drawGame() {
+    if(gameStop === false){
+        restart.classList = 'none'
+    }
+    else{
+        restart.classList = ''
+    }
     clear()
     drawPoints()
     position()

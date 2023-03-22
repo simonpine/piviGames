@@ -1,4 +1,5 @@
-const canvas = document.getElementById("tetris");
+
+const canvas = document.getElementById("game");
 const ctx = canvas.getContext('2d');
 
 const scale = 20;

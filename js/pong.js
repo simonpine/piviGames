@@ -7,7 +7,7 @@ let ballY = 250;
 let velocity = 2;
 let velocityUsers = 4;
 let color = 'white'
-let direction;
+let direction = 'nop';
 let user1Y = 10;
 let user2Y = 10;
 let moveUser1;
@@ -25,6 +25,12 @@ start.addEventListener('click', () => {
     sta >= 2 ? direction = 'ld' : direction = 'ru'
 })
 function drawGame() {
+    if(direction !== 'nop'){
+        start.classList = 'none'
+    }
+    else{
+        start.classList = ''
+    }
     clear()
     drawPoints()
     ballDirect()
@@ -110,13 +116,13 @@ function topButtonColision() {
     }
     else if (ballX >= 890) {
         color = 'red'
-        direction = undefined
+        direction = 'nop'
         points1 += 1
         ballX = ballX - 5
     }
     else if (ballX <= 10) {
         color = 'red'
-        direction = undefined
+        direction = 'nop'
         points2 += 1
         ballX = ballX + 5
     }

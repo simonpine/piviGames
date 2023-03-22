@@ -196,10 +196,7 @@ function dark() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 function rePlay() {
-    if (points === 0) {
-        startButton.classList = ''
-    }
-    else {
+    if(!gameStop){
         startButton.classList = 'none'
     }
     if (loose) {

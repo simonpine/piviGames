@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="author" content="Simon Pineda">
     <meta name="Copyright" content="Copyright ©SimonPine 2022">
@@ -9,18 +10,52 @@
     <link rel="stylesheet" type="text/css" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-    <h1>Snake</h1>
-    
-    <canvas id="game" width="600" height="500"></canvas>
-    <button id="startSnake">Play Again</button>
+    <nav class="navHome">
+        <!-- <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a> -->
+        <ul class="ul1">
+            <li>
+                <a class="initialButtons" id="pongButton" href="./pong.html">Pong</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="pacButton" href="./pacman.html">Pacman</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="flapyButton" href="./flapyBird.html">Flappy Bird</a>
+            </li>
+
+        </ul>
+        <ul class="ul2">
+            <li>
+                <a class="initialButtons" id="snakeButton" href="../index.html">Home</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="teButton" href="./tetris.html">Tetris</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="spaceButton" href="./spaceInvader.html">Space Invaders</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="gameBut">
+        <h1 class="title">Snake</h1>
+        <canvas id="game" width="600" height="500"></canvas>
+        <button id="startSnake">Play Again</button>
+    </div>
     <!-- <button id="mode">Mode</button> -->
-    <div class="none">
+    <!-- <div class="none">
         <button class="directionButtons">Up</button>
         <button class="directionButtons">Down</button>
         <button class="directionButtons">Left</button>
         <button class="directionButtons">Right</button>
+    </div> -->
+    <div class="info">
     </div>
+    <script src="../js/bg.js"></script>
     <script src="../js/snake.js"></script>
 </body>
+
 </html>

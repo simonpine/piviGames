@@ -10,14 +10,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1>Pac-Man</h1>
-    
-    <canvas id="game" width="421" height="490"></canvas>
+    <nav class="navHome">
+        <!-- <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a> -->
+        <ul class="ul1">
+            <li>
+                <a class="initialButtons" id="pongButton" href="./pong.html">Pong</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="pacButton" href="../index.html">Home</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="flapyButton" href="./flapyBird.html">Flappy Bird</a>
+            </li>
+
+        </ul>
+        <ul class="ul2">
+            <li>
+                <a class="initialButtons" id="snakeButton" href="./snake.html">Snake</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="teButton" href="./tetris.html">Tetris</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="spaceButton" href="./spaceInvader.html">Space Invaders</a>
+            </li>
+        </ul>
+    </nav>
     <div style="display:none;">
         <img id="animation" src="../img/animations.gif" width="140" height="20">
         <img id="animation2"src="../img/animations2.gif" width="140" height="20">
         <img id="ghosts" src="../img/ghost.png" width="140" height="20">
     </div>
+    <div class="gameBut">
+        <h1 class="title">Pac-Man</h1>
+        <canvas id="game" width="421" height="490"></canvas>
+    </div>
+    <div class="info">
+    </div>
+    <script src="../js/bg.js"></script>
     <script src="../js/ghost.js"></script>
     <script src="../js/pacmanPlayer.js"></script>
     <script src="../js/pacman.js"></script>

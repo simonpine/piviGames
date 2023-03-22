@@ -11,14 +11,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1>Tetris</h1>
-    <canvas id="tetris" width="300" height="600"></canvas>
-    <!-- <button id="playAgain">Play Again</button>
-    <button id="nextLevel">Next Level</button> -->
-    <!-- <div>
-        <button class="directionButtons"><=</button>
-        <button class="directionButtons">=></button>
-    </div> -->
+    <nav class="navHome">
+        <!-- <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a> -->
+        <ul class="ul1">
+            <li>
+                <a class="initialButtons" id="pongButton" href="./pong.html">Pong</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="pacButton" href="./pacman.html">Pacman</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="flapyButton" href="./flapyBird.html">Flappy Bird</a>
+            </li>
+
+        </ul>
+        <ul class="ul2">
+            <li>
+                <a class="initialButtons" id="snakeButton" href="./snake.html">Snake</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="teButton" href="../index.html">Home</a>
+            </li>
+            <li>
+                <a class="initialButtons" id="spaceButton" href="./spaceInvader.html">Space Invaders</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="gameBut">
+        <h1 class="title">Tetris</h1>
+        <canvas id="game" width="300" height="600"></canvas>
+    </div>
+    <div class="info">
+    </div>
+    <script src="../js/bg.js"></script>
     <script src="../js/tetris.js"></script>
 </body>
 </html>
