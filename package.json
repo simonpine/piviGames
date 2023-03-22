@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.0-alpha1",
+    "stats.js": "^0.17.0",
     "three": "^0.150.1"
   }
 }

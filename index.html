@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="author" content="Simon Pineda">
     <meta name="Copyright" content="Copyright ©SimonPine 2022">
@@ -9,30 +10,54 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+
+<body class="bg">
     <nav class="navHome">
-        <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a>
-        <ul>
+        <!-- <a class="logoNav" href="./index.html"><img class="logoNav" alt="logo" src="./img/logo1.svg"></a> -->
+        <ul class="ul1">
             <li>
-                <a href="./html/snake.html">Snake</a>
+                <a class="initialButtons" id="pongButton" href="./html/pong.html">Pong</a>
             </li>
             <li>
-                <a href="./html/flapyBird.html">Flappy Bird</a>
+                <a class="initialButtons" id="pacButton" href="./html/pacman.html">Pacman</a>
             </li>
             <li>
-                <a href="./html/spaceInvader.html">Space Invaders</a>
+                <a class="initialButtons" id="flapyButton" href="./html/flapyBird.html">Flappy Bird</a>
+            </li>
+
+        </ul>
+        <ul class="ul2">
+            <li>
+                <a class="initialButtons" id="snakeButton" href="./html/snake.html">Snake</a>
             </li>
             <li>
-                <a href="./html/pong.html">Pong</a>
+                <a class="initialButtons" id="teButton" href="./html/tetris.html">Tetris</a>
             </li>
             <li>
-                <a href="./html/pacman.html">Pacman</a>
-            </li>
-            <li>
-                <a href="./html/tetris.html">Tetris</a>
+                <a class="initialButtons" id="spaceButton" href="./html/spaceInvader.html">Space Invaders</a>
             </li>
         </ul>
     </nav>
-    <script src="js/main.js" type="module"></script>
+    <div class="caption">
+        <h2>Simon Pine</h2>
+        <div class="logos">
+            <a href="https://www.instagram.com/simonpineda0521/" target="_blank">
+                <img src="./img/insta.png" alt="instagram logo">
+            </a>
+            <a href="https://github.com/simonpine" target="_blank">
+                <img src="./img/facebook.png" alt="facebook logo">
+            </a>
+            <a href="https://twitter.com/SimonPine2" target="_blank">
+                <img src="./img/twitter.png" alt="twitter logo">
+            </a>
+            <a href="https://simonpine.com" target="_blank">
+                <img src="./img/logo1.svg" alt="twitter logo">
+            </a>
+        </div>
+    </div>
+    <div class="info">
+    </div>
+    <script type="module" src="./js/main2.js"></script>
 </body>
+
 </html>
